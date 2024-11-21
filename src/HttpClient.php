@@ -206,7 +206,7 @@ abstract class HttpClient
      * @throws \Exception
      * @return HttpClient
      */
-    public function setUserAgent($userAgent)
+    public function setUserAgent(string $userAgent)
     {
         if (!is_string($userAgent)) {
             throw new \Exception('UserAgent值类型非法');
@@ -223,7 +223,7 @@ abstract class HttpClient
      * @throws \Exception
      * @return HttpClient
      */
-    public function setTimeOut($second, $msSecond = 0)
+    public function setTimeOut(int $second, int $msSecond = 0)
     {
         if (!is_int($second) || $second < 0) {
             throw new \Exception("超时时间：秒 值非法");
@@ -245,7 +245,7 @@ abstract class HttpClient
      * @param int $proxyPort 代理端口
      * @return HttpClient
      */
-    public function setProxy($proxyHost, $proxyPort)
+    public function setProxy(string $proxyHost, int $proxyPort)
     {
         $this->proxy['host'] = $proxyHost;
         $this->proxy['port'] = $proxyPort;
@@ -259,7 +259,7 @@ abstract class HttpClient
      * @throws \Exception
      * @return HttpClient
      */
-    public function setHeader($key, $value)
+    public function setHeader(string $key, string $value)
     {
         if (!is_string($key) || $key == '' || !is_string($value)) {
             throw new \Exception('请求头信息不正确');
