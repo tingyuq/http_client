@@ -28,21 +28,12 @@ class Get extends HttpClient
             }
         }
 
-        $this->initialize();
 
         $this->requestUrl = $uri;
         $this->requestMethod = self::$method;
 
-        curl_setopt($this->handler, CURLOPT_URL, $this->requestUrl);
-
-        $this->responseBody = curl_exec($this->handler);
-
-        $this->responseStatusCode = curl_getinfo($this->handler, CURLINFO_HTTP_CODE);
-
-        $this->errNo = curl_errno($this->handler);
-        $this->errMsg = curl_error($this->handler);
-
-        curl_close($this->handler);
+        $this->initialize();
+        $this->execute();
 
         // todo 记录日志信息
 
