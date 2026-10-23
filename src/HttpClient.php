@@ -130,7 +130,10 @@ abstract class HttpClient
         $this->errNo = curl_errno($this->handler);
         $this->errMsg = curl_error($this->handler);
 
-        curl_close($this->handler);
+        // PHP 8.0+ 句柄为对象会自动回收，curl_close() 为空操作且在 8.5 被弃用，仅在 PHP 7 下显式释放
+        if (PHP_VERSION_ID < 80000) {
+            curl_close($this->handler);
+        }
     }
 
 
